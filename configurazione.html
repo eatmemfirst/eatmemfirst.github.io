@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EatMeFirst - Configurazione Nucleo Familiare</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body.family-cover-body {
+            min-height: 100vh;
+            background-image: url('famiglia.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            position: relative;
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        /* Logo separato in alto in mezzo */
+        .top-logo-container {
+            text-align: center;
+            padding-top: 25px;
+        }
+        .top-logo-container h1 {
+            color: #ffffff;
+            font-size: 2.2rem;
+            text-shadow: 0 2px 6px rgba(0,0,0,0.6);
+            margin-bottom: 2px;
+            letter-spacing: 1px;
+        }
+        .top-logo-container p {
+            color: #e2e8f0;
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 0 1px 4px rgba(0,0,0,0.6);
+            font-weight: bold;
+        }
+
+        /* Pannello inferiore a tutta larghezza che arriva fino al tavolo */
+        .bottom-panel {
+            background: rgba(255, 255, 255, 0.94);
+            backdrop-filter: blur(5px);
+            width: 100%;
+            padding: 25px 40px;
+            box-shadow: 0 -10px 30px rgba(0,0,0,0.3);
+            border-top-left-radius: 16px;
+            border-top-right-radius: 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .panel-content-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .family-info-text {
+            font-size: 0.88rem;
+            color: #333;
+            line-height: 1.45;
+            flex: 2;
+            background: #f4f9f9;
+            padding: 12px 16px;
+            border-left: 4px solid #2b7a78;
+            border-radius: 4px;
+        }
+
+        .form-inputs-group {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            background: #ffffff;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
+        }
+
+        .form-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .form-row label {
+            font-weight: bold;
+            color: #333;
+            font-size: 0.9rem;
+        }
+
+        .form-row input {
+            width: 70px;
+            padding: 6px;
+            font-size: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            text-align: center;
+        }
+
+        .actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 15px;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+            padding-top: 5px;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        .btn {
+            padding: 10px 25px;
+            border: none;
+            border-radius: 6px;
+            font-size: 0.95rem;
+            font-weight: bold;
+            cursor: pointer;
+            text-align: center;
+            text-decoration: none;
+            transition: background 0.2s;
+        }
+        .btn-back {
+            background-color: #e2e8f0;
+            color: #333;
+        }
+        .btn-back:hover {
+            background-color: #cbd5e1;
+        }
+        .btn-continue {
+            background-color: #2b7a78;
+            color: white;
+        }
+        .btn-continue:hover {
+            background-color: #3a9b98;
+        }
+    </style>
+</head>
+<body class="family-cover-body">
+
+    <!-- Logo separato in alto in mezzo -->
+    <div class="top-logo-container">
+        <h1>EatMeFirst</h1>
+        <p>Configurazione Nucleo Familiare</p>
+    </div>
+
+    <!-- Pannello inferiore a tutta larghezza -->
+    <div class="bottom-panel">
+        <form id="familyForm">
+            <div class="panel-content-row">
+                <!-- Testo esplicativo sul perché della composizione familiare -->
+                <div class="family-info-text">
+                    <strong>Perché chiediamo questa informazione?</strong> 
+                    Il programma analizza i consumi per stimare se le grandi quantità di generi alimentari acquistati potranno essere consumate in tempo prima della scadenza, basandosi sul trend dei prelievi. 
+                    <br>
+                    <em>Tutti i calcoli avvengono interamente ed esclusivamente sul tuo dispositivo: le informazioni inserite restano al sicuro nel tuo hardware.</em>
+                </div>
+
+                <!-- Tabella / Inputs numerici -->
+                <div class="form-inputs-group">
+                    <div class="form-row">
+                        <label for="adults">Numero Adulti:</label>
+                        <input type="number" id="adults" min="1" value="2" required>
+                    </div>
+                    <div class="form-row">
+                        <label for="children">Numero Bambini:</label>
+                        <input type="number" id="children" min="0" value="0" required>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pulsanti di navigazione in basso -->
+            <div class="actions">
+                <a href="legal.html" class="btn btn-back">Indietro</a>
+                <button type="submit" class="btn btn-continue">Continua</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('familyForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const adults = document.getElementById('adults').value;
+            const children = document.getElementById('children').value;
+
+            // Salviamo i dati localmente nel browser
+            localStorage.setItem('eatMeFirst_adults', adults);
+            localStorage.setItem('eatMeFirst_children', children);
+            localStorage.setItem('eatMeFirst_configured', 'true');
+
+            // Passiamo alla pagina dell'inventario
+            window.location.href = 'inventario.html';
+        });
+    </script>
+</body>
+</html>

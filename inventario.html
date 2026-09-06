@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EatMeFirst - Dashboard Inventario</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body.page-dashboard-body {
+            font-family: Arial, sans-serif;
+            min-height: 100vh;
+            background-image: url('spesa.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            position: relative;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 25px;
+        }
+
+        /* Logo ingrandito in alto in trasparenza pura */
+        .top-logo-container {
+            text-align: left;
+        }
+        .top-logo-container h1 {
+            color: #ffffff;
+            font-size: 2.6rem;
+            text-shadow: 0 3px 8px rgba(0,0,0,0.8);
+            letter-spacing: 1.5px;
+        }
+
+        /* Area contenitore principale della dashboard */
+        .dashboard-layout-container {
+            width: 100%;
+            max-width: 1000px;
+            margin: 0 auto;
+            position: relative;
+            min-height: 420px;
+        }
+
+        /* Semaforo ingrandito in alto a destra */
+        .semaforo-panel {
+            background: rgba(255, 255, 255, 0.94);
+            backdrop-filter: blur(6px);
+            padding: 26px;
+            border-radius: 14px;
+            box-shadow: 0 12px 35px rgba(0,0,0,0.4);
+            width: 360px;
+            position: absolute;
+            top: 0;
+            right: 2%;
+        }
+
+        .semaforo-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .semaforo-row {
+            display: grid;
+            grid-template-columns: 32px 1fr;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .bulb {
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            border: 2px solid rgba(0,0,0,0.2);
+            justify-self: center;
+        }
+        .bulb-green {
+            background-color: #10b981;
+            box-shadow: 0 0 12px #10b981;
+        }
+        .bulb-yellow {
+            background-color: #fde047;
+            opacity: 0.3;
+        }
+        .bulb-red {
+            background-color: #ef4444;
+            opacity: 0.3;
+        }
+
+        .dash-btn {
+            background-color: #ffffff;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            padding: 10px 14px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: #333;
+            cursor: pointer;
+            text-align: left;
+            width: 100%;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            transition: background 0.2s;
+            line-height: 1.2;
+            text-decoration: none;
+            display: block;
+        }
+        .dash-btn:hover {
+            background-color: #f1f5f9;
+        }
+
+        /* Pulsanti di carico e scarico al centro in basso (sotto alla salsa) */
+        .actions-panel {
+            background: rgba(255, 255, 255, 0.94);
+            backdrop-filter: blur(6px);
+            padding: 18px;
+            border-radius: 14px;
+            box-shadow: 0 12px 35px rgba(0,0,0,0.4);
+            width: 300px;
+            position: absolute;
+            bottom: 0;
+            left: 38%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .dash-btn.action-load {
+            background-color: #2b7a78;
+            color: white;
+            border-color: #2b7a78;
+            font-weight: bold;
+            text-align: center;
+            padding: 12px;
+            font-size: 1rem;
+        }
+        .dash-btn.action-load:hover {
+            background-color: #3a9b98;
+        }
+
+        .dash-btn.action-unload {
+            background-color: #475569;
+            color: white;
+            border-color: #475569;
+            font-weight: bold;
+            text-align: center;
+            padding: 12px;
+            font-size: 1rem;
+        }
+        .dash-btn.action-unload:hover {
+            background-color: #64748b;
+        }
+
+        @media (max-width: 768px) {
+            .dashboard-layout-container {
+                display: flex;
+                flex-direction: column;
+                gap: 15px;
+                position: static;
+                min-height: auto;
+            }
+            .semaforo-panel, .actions-panel {
+                position: static;
+                width: 100%;
+                max-width: 340px;
+                margin: 0 auto;
+                transform: none;
+            }
+        }
+    </style>
+</head>
+<body class="page-dashboard-body">
+
+    <div class="top-logo-container">
+        <h1>EatMeFirst</h1>
+    </div>
+
+    <div class="dashboard-layout-container">
+        
+        <div class="semaforo-panel">
+            <div class="semaforo-grid">
+                <div class="semaforo-row">
+                    <div class="bulb bulb-green" id="bulb-green"></div>
+                    <a href="dispensa.html" class="dash-btn">Merci in dispensa</a>
+                </div>
+                <div class="semaforo-row">
+                    <div class="bulb bulb-yellow" id="bulb-yellow"></div>
+                    <a href="dispensa.html?filter=consigliata" class="dash-btn">Scadenza consigliata</a>
+                </div>
+                <div class="semaforo-row">
+                    <div class="bulb bulb-red" id="bulb-red"></div>
+                    <a href="dispensa.html?filter=tassativa" class="dash-btn">Scadenza tassativa</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="actions-panel">
+            <a href="carico.html" class="dash-btn action-load">➕ Carico merci</a>
+            <a href="scarico.html" class="dash-btn action-unload">➖ Scarico merci</a>
+        </div>
+
+    </div>
+
+    <div></div>
+
+</body>
+</html>

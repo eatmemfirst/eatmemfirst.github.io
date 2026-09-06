@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EatMeFirst - Accettazione Note Legali</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body.legal-cover-body {
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            background-image: url('condizioni.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            font-family: Arial, sans-serif;
+        }
+        .legal-box {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 30px;
+            max-width: 450px;
+            margin-right: 50px;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+        }
+    </style>
+</head>
+<body class="legal-cover-body">
+    <div class="legal-box">
+        <h2>Note Legali e Condizioni</h2>
+        <p>Prima di proseguire con la configurazione del tuo nucleo familiare su EatMeFirst, ti invitiamo a prendere visione delle condizioni d'uso che regolano l'applicazione.</p>
+        
+        <p><a href="condizioni-integrali.html" target="_blank" style="color: #2b7a78; font-weight: bold;">Leggi il testo integrale delle Condizioni d'Uso e Note Legali</a></p>
+        
+        <div style="margin: 20px 0;">
+            <label style="font-size: 0.9rem; cursor: pointer; display: flex; align-items: flex-start; gap: 10px;">
+                <input type="checkbox" id="acceptCheckbox" style="margin-top: 4px;">
+                <span>Confermo di aver letto e compreso integralmente le condizioni d'uso, e di aver ben capito il punto 4 (la responsabilità del controllo degli alimenti prima del consumo è esclusivamente mia).</span>
+            </label>
+        </div>
+
+        <button id="proceedBtn" disabled style="opacity: 0.5; cursor: not-allowed; width: 100%; padding: 14px; border: none; background: #2b7a78; color: white; border-radius: 6px; font-weight: bold; font-size: 1rem;">Crea Nucleo Familiare</button>
+    </div>
+
+    <script>
+        const checkbox = document.getElementById('acceptCheckbox');
+        const btn = document.getElementById('proceedBtn');
+
+        checkbox.addEventListener('change', function() {
+            if (this.checked) {
+                btn.disabled = false;
+                btn.style.opacity = '1';
+                btn.style.cursor = 'pointer';
+            } else {
+                btn.disabled = true;
+                btn.style.opacity = '0.5';
+                btn.style.cursor = 'not-allowed';
+            }
+        });
+
+        btn.addEventListener('click', function() {
+            if (!checkbox.checked) return;
+            // Reindirizza alla pagina di configurazione per creare il nucleo familiare
+            window.location.href = 'configurazione.html';
+        });
+    </script>
+</body>
+</html>

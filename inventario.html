@@ -46,7 +46,7 @@
             min-height: 420px;
         }
 
-        /* Semaforo ingrandito in alto a destra */
+        /* Semaforo in alto a destra */
         .semaforo-panel {
             background: rgba(255, 255, 255, 0.94);
             backdrop-filter: blur(6px);
@@ -83,13 +83,10 @@
             background-color: #10b981;
             box-shadow: 0 0 12px #10b981;
         }
-        .bulb-yellow {
-            background-color: #fde047;
-            opacity: 0.3;
-        }
-        .bulb-red {
-            background-color: #ef4444;
-            opacity: 0.3;
+        /* Lampadina gialla/arancione per indicare le scadenze generali */
+        .bulb-orange {
+            background-color: #f59e0b;
+            box-shadow: 0 0 12px #f59e0b;
         }
 
         .dash-btn {
@@ -113,7 +110,7 @@
             background-color: #f1f5f9;
         }
 
-        /* Pulsanti di carico e scarico al centro in basso (sotto alla salsa) */
+        /* Pulsanti di carico e scarico al centro in basso */
         .actions-panel {
             background: rgba(255, 255, 255, 0.94);
             backdrop-filter: blur(6px);
@@ -182,6 +179,7 @@
 
     <div class="dashboard-layout-container">
         
+        <!-- Pannello Semaforo Unificato -->
         <div class="semaforo-panel">
             <div class="semaforo-grid">
                 <div class="semaforo-row">
@@ -189,16 +187,13 @@
                     <a href="dispensa.html" class="dash-btn">Merci in dispensa</a>
                 </div>
                 <div class="semaforo-row">
-                    <div class="bulb bulb-yellow" id="bulb-yellow"></div>
-                    <a href="dispensa.html?filter=consigliata" class="dash-btn">Scadenza consigliata</a>
-                </div>
-                <div class="semaforo-row">
-                    <div class="bulb bulb-red" id="bulb-red"></div>
-                    <a href="dispensa.html?filter=tassativa" class="dash-btn">Scadenza tassativa</a>
+                    <div class="bulb bulb-orange" id="bulb-orange"></div>
+                    <a href="scadenza.html" class="dash-btn">Gestione Scadenze</a>
                 </div>
             </div>
         </div>
 
+        <!-- Pannello Azioni Carico / Scarico -->
         <div class="actions-panel">
             <a href="carico.html" class="dash-btn action-load">➕ Carico merci</a>
             <a href="scarico.html" class="dash-btn action-unload">➖ Scarico merci</a>
